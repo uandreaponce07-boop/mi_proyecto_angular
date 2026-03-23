@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome Headless 146.0.0.0 (Windows 10)" package="" timestamp="2026-03-23T01:24:18" id="0" hostname="Andrea" tests="10" errors="0" failures="0" time="0.156">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"/>
+  </properties>
+  <testcase name="ServiciosFamilia should be created" time="0.013" classname="ServiciosFamilia"/>
+  <testcase name="ServiciosArticulo should be created" time="0.003" classname="ServiciosArticulo"/>
+  <testcase name="ServiciosCliente should be created" time="0.003" classname="ServiciosCliente"/>
+  <testcase name="Familia should create" time="0.048" classname="Familia"/>
+  <testcase name="Articulo should create" time="0.018" classname="Articulo"/>
+  <testcase name="Articulo should create" time="0.022" classname="Articulo"/>
+  <testcase name="App should create the app" time="0.014" classname="App"/>
+  <testcase name="ListaFamilia should create" time="0.015" classname="ListaFamilia"/>
+  <testcase name="ListaCliente should create" time="0.009" classname="ListaCliente"/>
+  <testcase name="ListaArticulo should create" time="0.011" classname="ListaArticulo"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

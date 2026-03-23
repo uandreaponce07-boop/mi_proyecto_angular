@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header" style ="background: rgb(67, 58, 58); color:white;">
+    Catalogo de Clientes
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label" >Numero</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Numero Cliente" [(ngModel)]="Numero">
+    </div>    
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+        <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="Nombre Cliente" [(ngModel)]="Nombre">
+    </div>    
+        <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+        <input type="email" class="form-control" id="exampleFormControlInput5" placeholder="Telefono Cliente" [(ngModel)]="Telefono">
+    </div>   
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label" >Codigo Postal</label>
+        <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="Codigo Postal Cliente" [(ngModel)]="CP">
+    </div>    
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Direccion</label>
+        <input type="email" class="form-control" id="exampleFormControlInput4" placeholder="Direccion Cliente" [(ngModel)]="Direccion">
+    </div>    
+ 
+    <a class="btn btn-primary me-2" (click)="Consultar()">Consultar</a>
+    <a class="btn btn-primary me-2" (click)="Grabar()">Guardar</a>
+    <a class="btn btn-primary me-2" (click)="Modificar()">Modificar</a>
+    <a class="btn btn-primary me-2" (click)="Borrar()">Borrar</a>
+  </div>
+</div>

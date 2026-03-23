@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header d-flex" style="background: rgb(50, 54, 50); color:white;">
+    Catalogo de Articulos
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Numero</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Numero Articulo"  [(ngModel)]="Numero">
+</div>
+ <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+  <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="Nombre Articulo"  [(ngModel)]="Nombre">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">IdFamilia</label>
+  <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="IdFamilia del Articulo"  [(ngModel)]="idFamilia">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Costo</label>
+  <input type="email" class="form-control" id="exampleFormControlInput4" placeholder="Costo Articulo"  [(ngModel)]="Costo">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Precio</label>
+  <input type="email" class="form-control" id="exampleFormControlInput5" placeholder="Precio Articulo"  [(ngModel)]="Precio">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Marca</label>
+  <input type="email" class="form-control" id="exampleFormControlInput6" placeholder="Marca Articulo"  [(ngModel)]="Marca">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Porciento</label>
+  <input type="email" class="form-control" id="exampleFormControlInput7" placeholder="Porciento Articulo"  [(ngModel)]="Porciento">
+</div>
+    <a class="btn btn-primary me-2" (click)="Consultar()">Consultar</a>
+    <a class="btn btn-primary me-2" (click)="Grabar()">Grabar</a>
+    <a class="btn btn-primary me-2" (click)="Modificar()">Modificar</a>
+    <a class="btn btn-primary me-2" (click)="Borrar()">Borrar</a>
+  
+  </div>
+</div>
