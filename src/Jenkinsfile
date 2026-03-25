@@ -11,22 +11,20 @@ pipeline {
                 bat 'cd /d "C:\\DesarrolloWeb2\\ProyectoFac" && npm install'
             }
         }
-        stage('Paso 2: Probar y Copiar') {
+       stage('Paso 2: Probar') {
             steps {
                 bat '''
                     cd /d "C:\\DesarrolloWeb2\\ProyectoFac"
                     
-                    :: 1. Correr los tests
+                    :: 1. Corremos los tests (esto genera el results.xml en tu carpeta C:)
                     call npx ng test --watch=false --browsers=ChromeHeadless
                     
-                    :: 2. Crear la carpeta destino en el workspace de Jenkins (Ruta absoluta)
-                    if not exist "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ProyectoAngular\\test-results" mkdir "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ProyectoAngular\\test-results"
+                    :: 2. Forzamos la copia del archivo al Workspace de Jenkins
+                    :: Usamos %WORKSPACE% para que Jenkins sepa que es 'su' carpeta
+                    copy /Y "C:\\DesarrolloWeb2\\ProyectoFac\\test-results\\results.xml" "results.xml"
                     
-                    :: 3. Copiar el XML usando la ruta completa de origen y destino
-                    copy /Y "C:\\DesarrolloWeb2\\ProyectoFac\\test-results\\results.xml" "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ProyectoAngular\\test-results\\results.xml"
-                    
-                    echo === VERIFICANDO COPIA ===
-                    dir "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ProyectoAngular\\test-results"
+                    :: 3. Verificamos que se copió (esto saldrá en el log de Jenkins)
+                    dir results.xml
                 '''
             }
         }
@@ -34,8 +32,7 @@ pipeline {
     
     post {
         always {
-            // Jenkins ahora sí lo verá porque está en su carpeta de trabajo
-            junit 'test-results/results.xml'
+            // Ahora Jenkins lo busca en su propia raíz
+            junit 'results.xml'
         }
     }
-}
