@@ -22,9 +22,9 @@ pipeline {
     }
     
     post {
-       always {
-            // Usamos comillas dobles y doble barra para que Windows no se confunda
-            junit testResults: "C:\\DesarrolloWeb2\\ProyectoFac\\test-results\\*.xml"
+      always {
+            // Usamos la ruta relativa al disco con un asterisco extra por si acaso
+            junit testResults: '**/test-results/*.xml'
         }
     }
 }
