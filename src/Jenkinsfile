@@ -1,31 +1,43 @@
 pipeline {
     agent any 
-
+    
     options {
-        skipDefaultCheckout()
+        skipDefaultCheckout() 
     }
 
     stages {
         stage('Paso 1: Preparar') {
             steps {
+                // Entramos a tu carpeta y preparamos librerías
                 bat 'cd /d "C:\\DesarrolloWeb2\\ProyectoFac" && npm install'
             }
         }
-        stage('Paso 2: Probar') {
+        stage('Paso 2: Probar y Copiar') {
             steps {
-                bat 'cd /d "C:\\DesarrolloWeb2\\ProyectoFac" && npx ng test --watch=false --browsers=ChromeHeadless'
-            }
-        }
-        stage('Paso 3: Copiar resultados') {
-            steps {
-                bat 'copy C:\\DesarrolloWeb2\\ProyectoFac\\test-results\\*.xml %WORKSPACE%'
+                // Usamos las comillas triples (''' ''') para meter todo tu bloque de código igualito
+                bat '''
+                    cd /d "C:\\DesarrolloWeb2\\ProyectoFac"
+                    
+                    :: Correr los tests
+                    call npx ng test --watch=false --browsers=ChromeHeadless
+                    
+                    :: Crear carpeta en el workspace de este Pipeline
+                    if not exist "%WORKSPACE%\\test-results" mkdir "%WORKSPACE%\\test-results"
+                    
+                    :: Copiar el XML que generó Karma hacia Jenkins
+                    copy "C:\\DesarrolloWeb2\\ProyectoFac\\test-results\\results.xml" "%WORKSPACE%\\test-results\\results.xml"
+                    
+                    echo === VERIFICANDO WORKSPACE ===
+                    dir "%WORKSPACE%\\test-results"
+                '''
             }
         }
     }
-
+    
     post {
         always {
-            junit '*.xml'
+            // Ahora sí, Jenkins leerá el archivo desde su propia carpeta segura
+            junit 'test-results/results.xml'
         }
     }
 }
