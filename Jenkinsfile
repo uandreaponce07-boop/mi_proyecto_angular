@@ -22,9 +22,9 @@ pipeline {
     }
     
     post {
-        always {
-            // Publicamos los resultados para las gráficas
-            junit 'C:/DesarrolloWeb2/ProyectoFac/test-results/*.xml'
+       always {
+            // Le damos la ruta completa para que no se pierda
+            junit testResults: 'C:/DesarrolloWeb2/ProyectoFac/test-results/*.xml'
         }
     }
 }
