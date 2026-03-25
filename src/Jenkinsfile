@@ -8,27 +8,25 @@ pipeline {
     stages {
         stage('Paso 1: Preparar') {
             steps {
-                // Entramos a tu carpeta y preparamos librerías
                 bat 'cd /d "C:\\DesarrolloWeb2\\ProyectoFac" && npm install'
             }
         }
         stage('Paso 2: Probar y Copiar') {
             steps {
-                // Usamos las comillas triples (''' ''') para meter todo tu bloque de código igualito
                 bat '''
                     cd /d "C:\\DesarrolloWeb2\\ProyectoFac"
                     
-                    :: Correr los tests
+                    :: 1. Correr los tests
                     call npx ng test --watch=false --browsers=ChromeHeadless
                     
-                    :: Crear carpeta en el workspace de este Pipeline
-                    if not exist "%WORKSPACE%\\test-results" mkdir "%WORKSPACE%\\test-results"
+                    :: 2. Crear la carpeta destino en el workspace de Jenkins (Ruta absoluta)
+                    if not exist "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ProyectoAngular\\test-results" mkdir "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ProyectoAngular\\test-results"
                     
-                    :: Copiar el XML que generó Karma hacia Jenkins
-                    copy "C:\\DesarrolloWeb2\\ProyectoFac\\test-results\\results.xml" "%WORKSPACE%\\test-results\\results.xml"
+                    :: 3. Copiar el XML usando la ruta completa de origen y destino
+                    copy /Y "C:\\DesarrolloWeb2\\ProyectoFac\\test-results\\results.xml" "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ProyectoAngular\\test-results\\results.xml"
                     
-                    echo === VERIFICANDO WORKSPACE ===
-                    dir "%WORKSPACE%\\test-results"
+                    echo === VERIFICANDO COPIA ===
+                    dir "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ProyectoAngular\\test-results"
                 '''
             }
         }
@@ -36,7 +34,7 @@ pipeline {
     
     post {
         always {
-            // Ahora sí, Jenkins leerá el archivo desde su propia carpeta segura
+            // Jenkins ahora sí lo verá porque está en su carpeta de trabajo
             junit 'test-results/results.xml'
         }
     }

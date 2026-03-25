@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
-<testsuite name="Chrome Headless 146.0.0.0 (Windows 10)" package="" timestamp="2026-03-25T03:04:30" id="0" hostname="Andrea" tests="10" errors="0" failures="0" time="0.345">
+<testsuite name="Chrome Headless 146.0.0.0 (Windows 10)" package="" timestamp="2026-03-25T03:11:39" id="0" hostname="Andrea" tests="10" errors="0" failures="0" time="0.321">
   <properties>
     <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"/>
   </properties>
-  <testcase name="App should create the app" time="0.08" classname="App"/>
-  <testcase name="ServiciosCliente should be created" time="0.006" classname="ServiciosCliente"/>
-  <testcase name="Articulo should create" time="0.067" classname="Articulo"/>
+  <testcase name="ServiciosCliente should be created" time="0.024" classname="ServiciosCliente"/>
+  <testcase name="ListaCliente should create" time="0.055" classname="ListaCliente"/>
+  <testcase name="ListaArticulo should create" time="0.031" classname="ListaArticulo"/>
   <testcase name="ServiciosArticulo should be created" time="0.009" classname="ServiciosArticulo"/>
-  <testcase name="ServiciosFamilia should be created" time="0.007" classname="ServiciosFamilia"/>
-  <testcase name="ListaFamilia should create" time="0.048" classname="ListaFamilia"/>
-  <testcase name="ListaCliente should create" time="0.031" classname="ListaCliente"/>
-  <testcase name="Articulo should create" time="0.05" classname="Articulo"/>
-  <testcase name="ListaArticulo should create" time="0.022" classname="ListaArticulo"/>
+  <testcase name="ServiciosFamilia should be created" time="0.009" classname="ServiciosFamilia"/>
+  <testcase name="Articulo should create" time="0.077" classname="Articulo"/>
+  <testcase name="ListaFamilia should create" time="0.018" classname="ListaFamilia"/>
+  <testcase name="Articulo should create" time="0.042" classname="Articulo"/>
+  <testcase name="App should create the app" time="0.031" classname="App"/>
   <testcase name="Familia should create" time="0.025" classname="Familia"/>
   <system-out>
     <![CDATA[
