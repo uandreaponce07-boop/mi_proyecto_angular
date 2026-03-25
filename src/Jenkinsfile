@@ -1,38 +1,35 @@
 pipeline {
     agent any 
-    
-    options {
-        skipDefaultCheckout() 
-    }
-
     stages {
         stage('Paso 1: Preparar') {
             steps {
                 bat 'cd /d "C:\\DesarrolloWeb2\\ProyectoFac" && npm install'
             }
         }
-       stage('Paso 2: Probar') {
+        stage('Paso 2: Probar') {
             steps {
                 bat '''
                     cd /d "C:\\DesarrolloWeb2\\ProyectoFac"
                     
-                    :: 1. Corremos los tests (esto genera el results.xml en tu carpeta C:)
+                    :: 1. Ejecutar tests
                     call npx ng test --watch=false --browsers=ChromeHeadless
                     
-                    :: 2. Forzamos la copia del archivo al Workspace de Jenkins
-                    :: Usamos %WORKSPACE% para que Jenkins sepa que es 'su' carpeta
-                    copy /Y "C:\\DesarrolloWeb2\\ProyectoFac\\test-results\\results.xml" "results.xml"
-                    
-                    :: 3. Verificamos que se copió (esto saldrá en el log de Jenkins)
-                    dir results.xml
+                    :: 2. Verificamos si el archivo existe en tu carpeta
+                    if exist "test-results\\results.xml" (
+                        echo === ARCHIVO ENCONTRADO EN PROYECTOFAC ===
+                        :: 3. Lo copiamos a la carpeta donde Jenkins está trabajando actualmente
+                        copy /Y "test-results\\results.xml" "%WORKSPACE%\\results.xml"
+                    ) else (
+                        echo === ERROR: EL ARCHIVO NO SE GENERO EN PROYECTOFAC ===
+                    )
                 '''
             }
         }
     }
-    
     post {
         always {
-            // Ahora Jenkins lo busca en su propia raíz
+            // Ahora le pedimos a Jenkins que busque el archivo que acabamos de copiar a su Workspace
             junit 'results.xml'
         }
     }
+}
