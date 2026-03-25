@@ -23,8 +23,8 @@ pipeline {
     
     post {
        always {
-            // Le damos la ruta completa para que no se pierda
-            junit testResults: 'C:/DesarrolloWeb2/ProyectoFac/test-results/*.xml'
+            // Usamos comillas dobles y doble barra para que Windows no se confunda
+            junit testResults: "C:\\DesarrolloWeb2\\ProyectoFac\\test-results\\*.xml"
         }
     }
 }
